@@ -9,5 +9,5 @@ Today I Learned
 -------------
 
 ## C#
-* [프로그래밍 언어의 분류](c#/chapter01.md)
+* [프로그래밍 언어의 분류](https://github.com/akaming/TIL/blob/master/c%23/chapter01.md)
 * 출력(Output), 상수(Constant)
