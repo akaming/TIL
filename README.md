@@ -5,9 +5,9 @@ Today I Learned
 
 <br>
 
-## 분류
+분류
 -------------
 
 ## C#
 * [프로그래밍 언어의 분류](https://github.com/akaming/TIL/blob/master/c%23/chapter01.md)
-* 출력(Output), 상수(Constant)
+* [출력(Output), 상수(Constant)](https://github.com/akaming/TIL/blob/master/c%23/chapter02.md)
