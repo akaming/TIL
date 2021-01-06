@@ -113,5 +113,106 @@ using System;
 
 <br>
 
-출력(Output)
+여러 값을 출력(Output)하기
 ------
+### 상수(constant)
+* int형
+    ```
+    Console.Write(30);
+    ```
+    * 정수를 표현
+    * –2,147,483,648 ~ 2,147,483,647
+    * 부호 있는 32비트 정수
+    
+* double 형
+    ```
+    Console.WriteLine(30.1);
+    ```
+    * 부동 소수점 숫자 형식
+    * ±5.0 × 10−324 ~ ±1.7 × 10308
+    * ~15-17개 자릿수
+    * 8바이트
+
+* float 형
+    ```
+    Console.WriteLine(30.2f);
+    ```
+    * 부동 소수점 숫자 형식
+    * ±1.5 x 10−45 ~ ±3.4 x 1038
+    * ~6-9개 자릿수
+    * 4바이트
+
+* bool 형
+    ```
+    Console.WriteLine(true);
+    ```
+    * 부울 값(true 또는 false)을 나타내는 형식
+    *  bool 형식은 [비교](https://docs.microsoft.com/ko-kr/dotnet/csharp/language-reference/operators/comparison-operators) 및 [같음](https://docs.microsoft.com/ko-kr/dotnet/csharp/language-reference/operators/equality-operators) 연산자의 결과 형식
+
+* char 형
+    ```
+    Console.WriteLine('p');
+    ```
+    * 유니코드 UTF-16 문자
+    * 기본값은 \0(U + 0000)
+    * [비교](https://docs.microsoft.com/ko-kr/dotnet/csharp/language-reference/operators/comparison-operators), [같음](https://docs.microsoft.com/ko-kr/dotnet/csharp/language-reference/operators/equality-operators), [증가](https://docs.microsoft.com/ko-kr/dotnet/csharp/language-reference/operators/arithmetic-operators#increment-operator-) 및 [감소](https://docs.microsoft.com/ko-kr/dotnet/csharp/language-reference/operators/arithmetic-operators#decrement-operator---) 연산자를 지원
+
+### 구문(statement)
+1. 한줄짜리 코드
+    * 보통 이 경우 코드 끝에 ';'가 있음
+    ```
+    예시 )
+    float num1 = 10.2345f;
+    Console.WriteLine("Hellow World!");
+    ```
+2. 여러 줄의 코드로 이루어진 블록(block)
+    * 범위(scope)라고 부름
+    * 이 경우 코드를 중광호({})로 감쌈
+    ```
+    예시 )
+    if (symbol == "+")
+    {
+        Console.Write(num1 + "+" + num2 + "=");
+        Console.WriteLine(num1 + num2);
+    }
+    ```
+
+### 주석(comment)
+* 코드와 관련된 내용을 메모할 때 사용
+* 컴파일할 때 무시되는 문장
+    ```
+    한줄)
+    // Hello World 를 출력함
+    
+    여러줄)
+    /*
+    Console.WriteLine("Hellow World!");
+    Console.WriteLine("Hellow World!");
+    Console.WriteLine("Hellow World!");
+    */
+    ```
+* 주석을 너무 지나치게 사용하지 말아야 함
+    * 주석은 코드와 마찬가지로 계속 관리해야 함
+    * 너무 많으면 업데이 못하는 주석들이 생길 수 있음
+    * 너무 많으면 다른 프로그래머들이 코드를 읽는데 불편
+    * 반드시, 꼭 필요한 내용만 주석으로 남기는 것이 좋음
+    * 주석이 없으면 없을 수록 좋은 코드
+    * '혹시라도 나중에 필요할 거 같아서..' 라고 생각한다면 그건 Git 등의 버전 관리 프로그램이 해야할 일 이므로 이런 주석처리는 필요없다
+
+<br>
+
+상수
+------
+
+* 상수란 **변하지 않는 데이터** 
+* literal(리터럴)
+    * 실제 업계에서는 리터럴 이라는 표현을 잘 안쓰고 상수라는 표현을 씀
+* 매직넘버 라고도 불림
+* 숫자 뿐만 아니라 문자까지 포함
+
+### 상수의 별명 - 매직 넘버(Magic Number)
+* 왜 상수를 매직 넘버 라고 부를까?
+    * 마치 마법처럼 **뭔지 전혀 알 수 없기** 때문
+    * 문자 메세지를 받았는데 '17'만 적혀 있다면 뭔지 알수있을까 
+* 매직 넘버는 되도록이면 사용하지 말아야 함
+* 매직 넘버를 사용하면 코드의 가독성이 떨어지고 유지 관리가 어렵다
