@@ -18,3 +18,6 @@ Today I Learned
 ### 바닐라 JS로 크롬 앱 만들기
 
 * Nomad Coder 에서 학습한 내용 입니다.
+    * [이론](https://github.com/akaming/TIL/blob/master/VanillaJS/theory.md)
+    * 연습
+    * 첫 번째 JS 앱 만들기
