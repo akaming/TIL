@@ -21,4 +21,4 @@ Today I Learned
 * Nomad Coder 에서 학습한 내용 입니다.
     * [이론](https://github.com/akaming/TIL/blob/master/VanillaJS/theory.md)
     * [연습](https://github.com/akaming/TIL/blob/master/VanillaJS/practice.md)
-    * 첫 번째 JS 앱 만들기
+    * [첫 번째 JS 앱 만들기](https://github.com/akaming/TIL/tree/master/VanillaJS/momentum)
