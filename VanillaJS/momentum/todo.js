@@ -13,6 +13,7 @@ function deleteToDo(event) {
     const li = btn.parentNode;
     toDoList.removeChild(li);
     const cleanToDos = toDos.filter(function(toDo){
+        // 모든 toDos 가 'li'의 id와 같지 않을때
        return toDo.id !== parseInt(li.id);
         
     });
