@@ -74,9 +74,42 @@
 ```
     /* 기본 설정으로, 플렉스 요소의 높이가 플렉스 컨테이너의 높이와 같게 변경된 뒤 연이어 배치 */
     align-items: stretch;
+   
+    /* 플렉스 컨테이너 위쪽에 배치 */
     align-items: flex-start; 
+   
+    /* 플렉스 컨테이너의 아래쪽에 배치 */
+    align-items: flex-end;
+   
+    /* 플렉스 컨테이너의 가운데 배치 */ 
+    align-items: center; 
+   
+    /* 플렉스 컨테이너의 기준선(baseline)에 배치 */
+    align-items: baseline; 
 ```
 
 
 #### align-content
+* flex-wrap 속성의 동작을 변
+*  align-items 속성과 비슷한 동작을 하지만, 플렉스 요소를 정렬하는 대신에 플렉스 라인을 정렬
+```
+    /* 기본 설정으로, 플렉스 라인의 높이가 남는 공간을 전부 차지 */
+    align-content: stretch;
+
+    /* 플렉스 컨테이너의 앞쪽에 뭉치게 됨 */
+    align-content: flexx-start;
+
+    /* 플렉스 컨테이너의 뒤쪽에 뭉치게 됨 */
+    align-content: flex-end;
+
+    /*플렉스 컨테이너의 가운데에 뭉치게 됨*/
+    align-content: center;
+
+    /*플렉스 컨테이너에 고르게 분포됨*/
+    align-content: sapce-between;
+    
+    /*플렉스 컨테이너에 고르게 분포됨. 단, 양쪽 끝에 약간의 공간을 남겨둠*/
+    align-content: space-around;
+```
+
 
