@@ -95,10 +95,12 @@
 ##### auto-fill
 * column을 만들어주는 일을 함
 * 남는 공간(빈 트랙)을 그대로 유지
+
 ![auto-fill](./images/img_grid_01.jpg)
 
 ##### auto-fit
 * 남는 공간(빈 트랙) 없이 딱 맞게 늘림
+
 ![auto-fit](./images/img_grid_02.jpg)
 
 <br>
