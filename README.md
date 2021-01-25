@@ -24,3 +24,7 @@ Today I Learned
     * [이론](https://github.com/akaming/TIL/blob/master/VanillaJS/theory.md)
     * [연습](https://github.com/akaming/TIL/blob/master/VanillaJS/practice.md)
     * [첫 번째 JS 앱 만들기](https://github.com/akaming/TIL/tree/master/VanillaJS/momentum)
+
+### CSS Layout 마스터 클래스
+* Nomad Coder 에서 학습한 내용 입니다.
+    * [FLEXBOX](https://github.com/akaming/TIL/blob/master/cssLayout/flexbox.md)
