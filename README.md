@@ -16,7 +16,9 @@ Today I Learned
     * [형 변환(Type Conversion), 연산자(Operator)](https://github.com/akaming/TIL/blob/master/c%23/chapter04.md)
     * [연산자2](https://github.com/akaming/TIL/blob/master/c%23/chapter05.md) 
     * [문자열(String), 키보드 입력](https://github.com/akaming/TIL/blob/master/c%23/chapter06.md)
-
+    * [조건문](https://github.com/akaming/TIL/blob/master/c%23/chapter07.md)
+    * [논리(Logical) 및 조건(Conditional) 연산자](https://github.com/akaming/TIL/blob/master/c%23/chapter08.md)
+    * [switch 문](https://github.com/akaming/TIL/blob/master/c%23/chapter09.md)
 <br>
 
 ### 바닐라 JS로 크롬 앱 만들기
