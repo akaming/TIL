@@ -23,6 +23,7 @@ Today I Learned
     * [반복문](https://github.com/akaming/TIL/blob/master/c%23/chapter11.md)
     * [다차원 배열](https://github.com/akaming/TIL/blob/master/c%23/chapter12.md)
     * [함수](https://github.com/akaming/TIL/blob/master/c%23/chapter13.md)
+    * [열거형(enum) 및 어서트(assert)](https://github.com/akaming/TIL/blob/master/c%23/chapter14.md)
 <br>
 
 ### 바닐라 JS로 크롬 앱 만들기
