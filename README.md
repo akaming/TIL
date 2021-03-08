@@ -38,3 +38,6 @@ Today I Learned
 * Nomad Coder 에서 학습한 내용 입니다.
     * [FLEXBOX](https://github.com/akaming/TIL/blob/master/cssLayout/flexbox.md)
     * [GRID](https://github.com/akaming/TIL/blob/master/cssLayout/grid.md)
+
+### 인프런 : 누구든지 하는 리액트: 초심자를 위한 react 핵심 강좌
+* 인프런 에서 학습한 내용 입니다.
