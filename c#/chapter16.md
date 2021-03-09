@@ -446,3 +446,317 @@ decimal형 2
 * 여러개의 데이터를 리스트에 넣기
     * IEnumerable<T>이 뭔지는 몰라도 됨
     * 배열([])이나 List<T>가 매개변수가 되는것만 기억
+
+<br>
+
+컬렉션: 리스트 2
+----
+### 이 데이터가 리스트에 있나요?
+```
+    List<int> scores = new List<int>(3);      // {10, 30} 이 았다고 가정
+    bool bResult1 = scores.Contains(40);      // false
+    bool bResult2 = scores.Contains(30);      // true
+
+    List<string> scores = new List<string>(5);      // {"Bobe","Kope"} 이 았다고 가정
+    bool bResult1 = scores.Contains("bobe");        // false (대소문자 구분)
+    bool bResult2 = scores.Contains("Bobe");        // true
+```
+```
+    bool bResult = list.Contains(T data);    // list 는 List<T>
+```
+* 해당 데이터가 있으면 참, 아니면 거짓을 반환
+
+### 이 데어티가 리스트의 "어디에" 있나요?
+```
+    List<int> scores = new List<int>(3);      // {30, 30} 이 았다고 가정
+    int index1 = scores.IndexOf(40);      // -1
+    int index2 = scores.IndexOf(30);      // 0
+
+    List<string> scores = new List<string>(5);      // {"Bobe","Kope"} 이 았다고 가정
+    bool index1 = scores.IndexOf("bobe");        // -1 (대소문자 구분)
+    bool index2 = scores.IndexOf("Bobe");        // 0
+```
+```
+    int index = list.indexOf(T data);    // list 는 List<T>
+```
+* 해당 데이터가 '**처음**'으로 나타난 위치의 색인을 반환
+* 없다면 -1을 반환
+* 다양한 오버로드 함수가 있음(직접 찾아볼 것)
+
+### 이 데어티가 리스트의 "어디에" 있나요? (2)
+```
+    List<int> scores = new List<int>(3);      // {30, 30} 이 았다고 가정
+    int index1 = scores.LastIndexOf(40);      // -1
+    int index2 = scores.LastIndexOf(30);      // 1
+
+    List<string> scores = new List<string>(5);      // {"Bobe","Kope"} 이 았다고 가정
+    bool index1 = scores.LastIndexOf("bobe");        // -1 (대소문자 구분)
+    bool index2 = scores.LastIndexOf("Bobe");        // 0
+```
+```
+    int index = list.LastindexOf(T data);    // list 는 List<T>
+```
+* 해당 데이터가 '**마지막**'으로 나타난 위치의 색인을 반환
+* 없다면 -1을 반환
+* 다양한 오버로드 함수가 있음 (직접 찾아볼것)
+
+### 리스트 중간에 데이터 넣기
+```
+    List<int> scores = new List<int>(3);    // {30, 40}
+    scores.Insert(2, 10);
+
+    List<string> names = new List<string>(5);    // {"Bobe", "Kope"}
+    names.Insert(1, "Pope");
+```
+```
+    Insert(int index, T data);
+```
+* 리스트의 index 번째에 data를 넣기
+
+### 리스트의 총용량과 길이
+```
+    List<int> scores = new List<int>(3);                       // {30, 40}
+    Console.WriteLine($"{scores.Capacity}, {scores.Count}");   // "3, 2"
+
+    List<string> names = new List<string>(3);                       // {"Bobe", "Kope", "Pope"}
+    Console.WriteLine($"{names.Capacity}, {names.Count}");   // "5, 3"
+```
+```
+    int capacity = list.Capacity; // list는 List<T>
+    int count = list.Count; // list는 List<T>
+```
+* **List<T>**의 현재 총용량(capacity)과 사용량(Count)을 알려줌
+    * 모두 함수 아님
+
+### 잘못된 색인을 넣으면?
+```
+    List<int> scores = new List<int>(3);    // {30, 30}
+    scores.Insert(10,10);
+```
+* 위의 예시처럼 넣으면 "예외가 처리되지 않음"" 이라고 오류를 줌
+
+### 리스트에서 요소 삭제하기
+```
+    List<int> scores = new List<int>(3);  // {30, 40}
+    bool bSuccess1 = scores.Remove(10);   // 참
+    bool bSuccess2 = scores.Remove(100);  // 거짓
+
+    List<string> names = new List<string>(5);  // {"Bobe", "Kope", "Pope"}
+    bool bSuccess1 = names.Remove("Bobe");   // 참
+    bool bSuccess2 = names.Remove("Tobe");  // 거짓
+```
+```
+    bool bSuccess = list.Remove(T data);    // list는 List<T>
+```
+* 리스트에 data가 있으면 지우고 참을 반환, 없으면 거짓을 반환
+
+### 리스트의 요소에 접근하기 - []
+```
+    List<int> scores = new List<int>(3);  // {10, 30}
+    scores[2] = 100; // 프로그램 실행하면 예외 발생
+    int myScore = scores[0];  //myScore: 10
+    scores[0] = 100; // {100, 30}
+```
+<br>
+
+값 얻어오기
+```
+    T data = list[index];    //list는 List<T>, index는 정수형
+```
+<br>
+
+값 대입하기
+```
+    list.[index] = <T형 데이터>;   //list는 List<T>, index는 정수형
+```
+* 리스트의 index번째 요소에 접근
+
+### 리스트에 순차적으로 접근하기
+```
+    List<string> names = new List<string>(5);     //{"Bobe", "Kope", "Pope"}
+
+    for (int i = 0; i < names.Count; ++i)
+    {
+        Console.WriteLine($"Name: {names[i]}");
+    }
+```
+* 반복문을 이용해서 접근 가능
+
+### 리스트에서 배열로 변환하기
+```
+    List<string> names = new List<string>(5);
+    names.Add("Bobe");
+    names.Add("Kope");
+    names.Add("Pope");
+
+    string[] nameArray = names.ToArray();
+```
+```
+    T[] array = list.ToArray();   // list는 List<T>
+```
+* **List<T>**에서 순수한 배열 **T**[]로 변환 하는 함수
+    * **List<int>**는 **int**[]로, **List<float>** **float[]**로...
+
+### List<T>의 모든 요소를 지우기
+```
+    List<string> names = new List<string>(5);     //{ "Bobe", "Kope", "Pope" }
+
+    names.Clear();
+```
+```
+    list.Clear();   // list는 List<T>
+```
+* **List<T>**의 요소를 모두 지우는 함수 (용량은 안 변함)
+
+### 언제 사용하면 좋을까?
+* 배열 사용하는 곳에는 다 사용하기 좋음 (업계에서는 많이 사용함)
+
+<br>
+
+컬렉션: 딕셔너리(Dictionary) 1
+----
+### 딕셔너리(Dictionary)
+* List<T>와 다른 점은 색인이 0~n 사이의 수가 아니라 임의의 데이터형
+    * 이 임의의 데이터 형을 키(key)라고 함
+    * 실제 저장되는 값은 값(value)라고 함
+* 실제로 우리가 사용하는 사전과 비슷함
+
+### 딕셔너리
+* 배열에서 색인이 동일하면 같은 위치를 가리켰듯이 키가 동일하면 같은 값을 가르킴.
+* 따라서  내부 데이터 저장은 배열처럼 연속된 메모리에 할 수 없다 -> 당연히 배열이 더 효율적
+* 다른 언어에서는 딕셔너리 대십 (map)라고 함 (그래서 맵핑 하다라고 함)
+
+### Dictionary<TKey, TValue> 생성
+```
+    Dictionary<int, string> students = new Dictionary<int, string>();
+    Dictionary<int, int> scores = new Dictionary<int, int>();
+```
+* **<TKey>**
+    * 어떤 자료형의키를 담을지 표현함
+    * <T>와 마찬가지로 여기서는 자세히 다루지 않음 -> 그냥 쓰세요
+* **<TValue>**
+    * 어떤 자료형의 값을 담을지 표현함
+    * <T>와 마찬가지로 여기서는 자세히 다루지 않음 -> 그냥 쓰세요
+
+### 딕셔너리에 데이터 추가하기
+```
+     Dictionary<string, string> students = new Dictionary<string, string>();
+     students.Add("A10000000", "Teemo");    // (학번, 학생 이름)
+     students.Add("A10000001", "Leon");
+```
+* 키와 매핑되는 값을 딕셔너리에 추가
+
+### 이미 들어 있는 키로 새로운 데이터를 추가하면 어떻게 될까?
+```
+     Dictionary<string, string> students = new Dictionary<string, string>();
+     students.Add("A10000000", "Teemo");    // (학번, 학생 이름)
+     students.Add("A10000001", "Leon");
+     students.Add("A10000000", "Lulu");
+```
+* 예외처리가 되지 않음 이 뜸
+
+<br>
+
+컬렉션: 딕셔너리 2
+----
+### 중복된 키를 확인 후 추가
+```
+    Dictionary<string, string> students = new Dictionary<string, string>();
+    // {("A10000000", "Teemo"), ("A10000001", "Leon" )}
+
+    bool bSuccess1 = students.TryAdd("A10000000", "Lulu");   // 거짓
+    bool bSuccess2 = students.TryAdd("A10000002", "Lulu");   // 참
+```
+```
+    bool bSuccess = dic.TryAdd(Tkey key, TValue value); //dic은 dictionary<TKey, TValue>
+```
+* 딕셔너리 안에 key가 키로 없으면 새로운 값을 넣고 참을 반환
+* 딕셔너리 안에 key가 키로 이미 있으면 거짓을 반환
+
+### 딕셔너리의 모든 요소 삭제하기
+```
+    Dictionary<string, string> students = new Dictionary<string, string>();
+   // {("A10000000", "Teemo"), ("A10000001", "Leon" )}
+
+   students.Claer(); 
+```
+```
+    dic.Clear();    //dic은 dictionary<TKey, TValue>
+```
+*  딕셔너리의 모든 요소를 삭제
+
+### 딕셔너리 안에 키가 있는지 확인하기
+```
+    Dictionary<string, string> students = new Dictionary<string, string>();
+    // {("A10000000", "Teemo"), ("A10000001", "Leon" )}
+
+    bool bSuccess1 = students.ContainsKey("A10000000");   // 참
+    bool bSuccess2 = students.ContainsKey("Leon");   // 거짓
+```
+```
+    bool bContain = dic.ContainsKey(Tkey key);    //dic은 dictionary<TKey, TValue>
+```
+* 딕셔너리 안에 Key가 있으면 참, 없으면 거짓으로 반환
+
+### 딕셔너리 안에 값이 있는지 확인하기
+```
+    Dictionary<string, string> students = new Dictionary<string, string>();
+    // {("A10000000", "Teemo"), ("A10000001", "Leon" )}
+
+    bool bSuccess1 = students.ContainsValue("A10000000");   // 거짓
+    bool bSuccess2 = students.ContainsValue("Teemo");   // 참
+```
+```
+    bool bContain = dic.ContainsValue(TValue value);    //dic은 dictionary<TKey, TValue>
+```
+* 딕셔너리 안에 value가 값으로 있으면 참, 없으면 거짓으로 반환
+
+### 딕셔너리 안에 있는 요소를 삭제
+```
+    Dictionary<string, string> students = new Dictionary<string, string>();
+    // {("A10000000", "Teemo"), ("A10000001", "Leon" )}
+
+    bool bSuccess1 = students.Remove("A10000000");   // 참
+    bool bSuccess2 = students.Remove("Teemo");   // 거짓
+```
+```
+    bool bRemoved = dic.Remove(Tkey key);    //dic은 dictionary<TKey, TValue>
+```
+* 딕셔너리 안에 key가 키로 있으면 요소를 삭제 후 참, 없으면 거짓을 반환
+
+### 딕셔너리에서 키와 매핑된 값을 가져오기
+```
+    Dictionary<string, string> students = new Dictionary<string, string>();
+    // {("A10000000", "Teemo"), ("A10000001", "Leon" )}
+
+    string value;
+    bool bFound = students.TryGetValue("A10000000", out value); 
+    // bFound: 참, value: "Teemo"
+```
+```
+    bool bFound = dic.TryGetValue(Tkey key, out TValue value);    //dic은 dictionary<TKey, TValue>
+```
+* 딕셔너리 안에 key가 키로 있으면 값을 **out** 매개변수에 대입하고 참을 반환
+* 딕셔너리 안에 ke가 키로 없으면 거짓을 반환
+* 업계에서 위의 이런 방법으로는 잘 사용하지 않음
+
+### 또 다른 요소 추가/접근법 - []
+```
+    Dictionary<string, string> students = new Dictionary<string, string>();
+    // {("A10000000", "Teemo"), ("A10000001", "Leon" )}
+
+    students["A10000000"] = "Lulu";
+    // string student = students["A10000002"];    // throws an exception
+    students["A10000002"] = "Teemo";
+```
+```
+    dic[key] = value;    //dic은 dictionary<TKey, TValue>
+```
+* 키가 이미 있다면, 연결된 값을 변경
+* 키가 없다면, 키와 값을 새로운 원소로 추가
+* 업계에서는 이 방법으로 많이 사용
+
+### 언제 사용하면 좋을까?
+* 배열처럼 0,1,2,3,... 이렇게 순서대로 저장하기 힘든 경우
+    * 학번처럼 숫자가 커서 배열 색인으로 쓰기 힘들 떄
+* 데이터 저장 공간이 크고, 배열 중간에 데이터를 삽입 및 삭제를 자주 해야할 경우 
