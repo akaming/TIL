@@ -138,7 +138,7 @@
 ```
     ToString();
 ```
-*  완성한 최종 문자열을 반환
+* 완성한 최종 문자열을 반환
 * 현재 내부 배열의 사용중인 길이만큼만 반환
 * 오버로드한 함수가 있음(직접 찾아볼 것)
 
@@ -327,7 +327,7 @@ decimal형 2
 컬렉션: 컬렉션(Collection)이란?
 -----
 ### 컬렉션(Collection) 이란?
-* 동일한 혀으이 여러 자료를 저장하는 공간
+* 동일한 형의 여러 자료를 저장하는 공간
 * 자료 구조 (data strucure)의 일부
 * 다른 언어에서는 컨테이너(container)라고도 부름
 
@@ -760,3 +760,266 @@ decimal형 2
 * 배열처럼 0,1,2,3,... 이렇게 순서대로 저장하기 힘든 경우
     * 학번처럼 숫자가 커서 배열 색인으로 쓰기 힘들 떄
 * 데이터 저장 공간이 크고, 배열 중간에 데이터를 삽입 및 삭제를 자주 해야할 경우 
+
+<br>
+
+컬렉션: 해시셋(hashset)
+-----
+
+### 해시셋(hashset)
+* 딕셔너리와 매우 비슷
+* 사실 리스트와 딕셔너리를 쓰는 경우가 거의 90%
+* 나머지는 정말 특별할 때만 씀
+* 해시셋은 딕셔너리랑 너무 비슷해서 쉬우니 보여주는 것(...)
+* 차이점은 해시셋은 키만 있음
+    * 값만 있다고 표현할 수도...(관점의 차이)
+
+
+### HashSet<T> 생성
+```
+    HashSet<int> studentIDs = new HashSet<int>();
+    HashSet<string> studentNames = new HashSet<string>();
+```
+```
+    HashSet<T> 변수명 = new HashSet <T>();
+```
+* <T>
+    * 저장할 키의 자료형을 나타냄
+    * 여기서는 자세히 다루지 않음 -> 그냥 써라
+
+### 해시셋에 요소 추가하기
+```
+    HashSet<int> studentIDs = new HashSet<int>();
+    bool bSuccess1 = studentIDs.Add(201900002);   //참
+    bool bSuccess1 = studentIDs.Add(201900001);   //참
+    bool bSuccess1 = studentIDs.Add(201900002);   //거짓
+```
+```
+    bool bSuccess = hs.Add(T data);     //hs는 HashSet<T>
+```
+* 해시셋에 없는 키면 새 요소로 추가한 후 참을 반환
+* 해시셋에 있는 키면 거짓을 반환
+
+### 이 요소가 해시셋에 있나?
+```
+    HashSet<int> studentIDs = new HashSet<int>();    //{201900002, 201900001}
+    bool bContain1 = studentIDs.Contains(0);           // 거짓
+    bool bContain2 = studentIDs.Contains(201900001);   // 참
+```
+```
+    bool bContain = hs.Contains(T data);     //hs는 HashSet<T>
+```
+* 해시셋에 있는 키면 참을 반환
+* 해시셋에 없는 키면 거짓을 반환
+
+### 해시셋의 요소 삭제하기
+```
+    HashSet<int> studentIDs = new HashSet<int>();    //{201900002, 201900001}
+    bool bRemove1 = studentIDs.Remove(0);           // 거짓
+    bool bRemove2 = studentIDs.Remove(201900001);   // 참
+```
+```
+    bool bRemoved = hs.Remove(T data);     //hs는 HashSet<T>
+```
+* 해시셋에 있는 키면 요소를 삭제한 후 참을 반환
+* 해시셋에 없는 키면 거짓을 반환
+
+### 해시셋의 모든 요소 삭제하기
+```
+    HashSet<int> studentIDs = new HashSet<int>();    //{201900002, 201900001}
+    studentIDs.Clear();
+```
+```
+    hs.Clear();     //hs는 HashSet<T>
+```
+* 해시셋에 있는 모든 요소를 삭제
+
+### 해시셋의 요소 가져오기
+```
+    HashSet<int> studentIDs = new HashSet<int>();    //{201900002, 201900001}
+    int id;
+    bool bSuccess = studentIDs.TryGetValue(201900001, out id);
+    // bSuccess: 참, id: 201900001
+```
+```
+    bool bSuccess = hs.TryGetValue(T key, out T key);     //hs는 HashSet<T>
+```
+* 해시셋에 키가 있으면 그 키에 연결된 요소를 out 매개변수에 대입하고 참을 반환
+* 해시셋에 키가 없으면 거짓을 반환
+
+### 언제 사용하면 좋을까?
+* 중복 데이터를 제거할 때
+    * 수학의 집합
+    * 똑같은 데이터를 Add()하면 아무일도 일어나지 않으므로
+
+<bt>
+
+컬렉션과 같이 쓰면 유용한 것들: foreach
+-----
+### 컬렉션의 순차적 요소 탐색
+
+리스트
+```
+    List<string> names = new List<string>(5);     //{"Bobe", "Kope", "Pope"}
+
+    for ( int i = 0; i < names.Count; ++i)
+    {
+        Console.WriteLine($"Name: {names[i]}");
+    }
+```
+* 딕셔너리
+    * // 순수하게 딕셔너리가 지원하는 함수로는 불가능
+* 해시셋
+    * // 순수하게 해시셋이 지원하는 함수로는 불가능
+
+### 리스트와 foreach 문
+```
+    List<string> names = new List<string>(4096);     //{"Bobe", "Kope", "Pope"}
+    foreach (string name in names)
+    {
+        Console.WriteLine(name);
+    }
+```
+```
+    foreach( T 변수명 in list)    // list는 List<T>
+```
+* foreach문 안의 T는 리스트 선언할 때 사용한 자료형
+* 변수명은 foreach 문 범위에서만 사용됨
+
+### 딕셔너리와 foreach 문
+```
+    Dictionary<string, string> students = new Dictionary<string, string>();
+    // { ("A10000000", "Teemo"), ("A10000001", "Leon") }
+    foreach (KeyValuePair<string, string> score in students)
+    {
+        Conosle.WriteLine($"Key: {score.Key}, Value: {score.Value}");
+    }
+```
+```
+    foreach (KeyValuePair<TKey, TValue> 변수명 in dic)   // dic 은 Dictionnary<TKey, TValue>
+```
+* KeyValuePair<TKey, TValue>의 TKey와 TValue는 각각 딕셔너리를 선언할 때 사용한 키와 값의 자료형
+* 변수명은 foreach 문 범위에서만 사용됨
+
+### 해시셋과 foreach 문
+```
+    HashSet<int> studentIDs = new HashSet<int>();    //{201900002, 201900001}
+
+    foreach (int studentID in studentIDs)
+    {
+        Console.WriteLine(studentID);
+    }
+```
+* foreach 문 안의 T는 해시셋 선언할 때 사용한 자료형
+* 변수명은 foreach 문 범위에서만 사용됨
+
+### 배열([])도 foreach 문 가능
+```
+    float[] scores = { 30.5f, 41.0f, 53.2f, 66.6f, 70.9f };
+    foreach (float score in scores)
+    {
+        Console.WriteLine(score);
+    }
+```
+```
+    foreach ( T 변수명 In arr ) // arr는 T[]
+    {
+    }
+```
+
+### foreach 문의 한계
+1. 방문 하는 요소의 값을 바꿀 수 없음
+    ```
+        List<int> scores = new List<int>(4096);     //{ 10, 20 , 30}
+
+        foreach ( int score in scores)
+        {
+            score += 10;    // 컴파일 오류
+        }
+    ```
+
+2. 현재 방문 중인 요소의 색인을 알 방법이 없음
+    * 알려면 별도의 변수를 foreach 문 밖에서 선언 후 사용해야 함
+    ```
+        List<string> scores = new List<string>(4096);    //{"Pope", "Kope", "Bobe"}
+
+        int index = 0;
+        foreach ( string name in names )
+        {
+            ++index;
+            console.WriteLine(name);
+        }
+    ```
+
+3. 컬렉션이나 배열을 거꾸로 탐색할 수 없음
+    ```
+        List<string> scores = new List<string>(4096);    //{"Pope", "Kope", "Bobe"}
+
+        foreach ( string name in names )
+        {
+            console.WriteLine(name);
+        }
+    ```
+    왼쪽에서 오른쪽으로만 탐색 가능 함<br>
+    오른쪽에서 왼쪽으로는 탐색 불가능
+
+<br>
+
+컬렉션과 같이 쓰면 유용한 것들: var
+-----
+
+### 딕셔너리 foreach 문의 문제점
+```
+    Dictionary<string, string> students = new Dictionary<string, string>();
+    // { ("A10000000", "Teemo" ), ( "A10000001", "Leon" ) }
+
+    foreach (KeyValuePair<string, string> score in students)
+    {
+        Conosle.WriteLine($ "Key: {score.Key}, Value: {score.Value} " )
+    }
+```
+* KeyValuePair<TKey, TValue> 너무 길다
+
+### var 키워드를 적용한 딕셔너리 foreach 문
+```
+    Dictionary<string, string> students = new Dictionary<string, string>();
+    // { ("A10000000", "Teemo" ), ( "A10000001", "Leon" ) }
+
+    foreach (var score in students)
+    {
+        Conosle.WriteLine($ "Key: {score.Key}, Value: {score.Value} " )
+    }
+```
+
+### var 키워드
+* 묵시적 자료형
+    * 컴파일러가 알아서 자료형을 추론해줌
+* 지역변수에만 사용 가능
+* C++에서는 auto라고 표현
+* 긴 자료형을 짧게 줄여줌 -> 편함
+* 반드시 선언과 동시에 대입을 해야함
+    * 안하면 컴파일 오류
+    ```
+        var num = 10;
+        var message = "Hello World!";
+        var error;    //컴파일 오류
+    ```
+
+### 코딩 표준 : 자료형이 뭔지 바로 알 수 있을 때만..
+* 대입 하는 값을 통해 명백하게 자료형을 알 수 있을 때만 사용
+```
+    var num = 10;                       // int 라는걸 알수있음
+    var message = "Hello World!";       // string 이라는걸 알수있음
+    var weight = GetWeight();           // GetWeigh() 함수를 봐야함. 명백하지 않음 
+```
+* foreach 문에서 사용하는건 거의 언제나 좋음!
+```
+    Dictionary<string, string> students = new Dictionary<string, string>();
+    // { ("A10000000", "Teemo" ), ( "A10000001", "Leon" ) }
+
+    // 원래는 KeyValuePair<string, string> 
+    foreach (var score in students)
+    {
+        Conosle.WriteLine($ "Key: {score.Key}, Value: {score.Value} " )
+    }
+```
