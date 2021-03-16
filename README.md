@@ -27,6 +27,7 @@ Today I Learned
     * 재귀 함수, 그리고 주사위 굴리기(랜덤 수 생성)
     * [배열의 배열, 문자열 분할](https://github.com/akaming/TIL/blob/master/c%23/chapter15.md)
     * [문자열 빌더, decimal형, 컬렉션](https://github.com/akaming/TIL/blob/master/c%23/chapter16.md)
+    * [개체지향 프로그래밍(Object Oriented Programming) 기초](https://github.com/akaming/TIL/blob/master/c%23/chapter17.md)
 <br>
 
 ### 바닐라 JS로 크롬 앱 만들기

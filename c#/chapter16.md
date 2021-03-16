@@ -466,7 +466,7 @@ decimal형 2
 ```
 * 해당 데이터가 있으면 참, 아니면 거짓을 반환
 
-### 이 데어티가 리스트의 "어디에" 있나요?
+### 이 데이터가 리스트의 "어디에" 있나요?
 ```
     List<int> scores = new List<int>(3);      // {30, 30} 이 았다고 가정
     int index1 = scores.IndexOf(40);      // -1
@@ -483,7 +483,7 @@ decimal형 2
 * 없다면 -1을 반환
 * 다양한 오버로드 함수가 있음(직접 찾아볼 것)
 
-### 이 데어티가 리스트의 "어디에" 있나요? (2)
+### 이 데이터가 리스트의 "어디에" 있나요? (2)
 ```
     List<int> scores = new List<int>(3);      // {30, 30} 이 았다고 가정
     int index1 = scores.LastIndexOf(40);      // -1
@@ -594,8 +594,8 @@ decimal형 2
 ```
     T[] array = list.ToArray();   // list는 List<T>
 ```
-* **List<T>**에서 순수한 배열 **T**[]로 변환 하는 함수
-    * **List<int>**는 **int**[]로, **List<float>** **float[]**로...
+* List < T >에서 순수한 배열 **T**[]로 변환 하는 함수
+    * List < int >는 **int**[]로, List < float > **float[]**로...
 
 ### List<T>의 모든 요소를 지우기
 ```
@@ -606,7 +606,7 @@ decimal형 2
 ```
     list.Clear();   // list는 List<T>
 ```
-* **List<T>**의 요소를 모두 지우는 함수 (용량은 안 변함)
+* List< T >의 요소를 모두 지우는 함수 (용량은 안 변함)
 
 ### 언제 사용하면 좋을까?
 * 배열 사용하는 곳에는 다 사용하기 좋음 (업계에서는 많이 사용함)
