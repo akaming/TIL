@@ -44,3 +44,8 @@ Today I Learned
 
 ### 인프런 : 누구든지 하는 리액트: 초심자를 위한 react 핵심 강좌
 * 인프런 에서 학습한 내용 입니다.
+
+### ReactJS로 영화 웹 서비스 만들기
+* Nomad Coder 에서 학습한 내용 입니다.
+    * [JSX & PROPS](https://github.com/akaming/TIL/blob/master/ReactJsMovie/JSX_PROPS.md)
+    * [STATE]
