@@ -155,4 +155,180 @@ LINQ 2
         Price > 15.0f 은 위의 축약됐다고 보면 됨
 * var filderedItems = menuItems.Where(m => m.Price > 15.0f); 이거를 다시보면 menuItems 안에 있는 메뉴중에 $15보다 비싼 메뉴들을 filteredItems에 추가해서 반환하는 코드 라고 읽으면 됨
 
+<br>
 
+LINQ 3
+----
+### Where()
+* 특정 조건에 맞는 데이터만 찾아서 반환
+    * menuItems 안에 있는 메뉴 중에 $15보다 비싼 메뉴들을 filteredItems에 추가해서 반환하는 코드
+    ```
+        var filteredItems = menuItems.Where(m => m.Price > 15.0f);
+    ```
+* 그럼 👇이건 무엇을 하는 코드 일까?
+    * menuItems안에 있는 메뉴 중에 가격이 $14 이하고, 이름에 "super"를 포함한 메뉴 목록을 filteredItems1에 반환하는 코드
+    ```
+        var filteredItems1 = menuItems.Where(m => m.Price <= 14.0f && m.Name.Contains("Super"));
+    ```
+### OrderBy() / ThenBy() 
+* 두 함수 모두 오름차순으로 정렬 후 반환함
+* 별도의 정렬 기준을 추가하고 싶다면 ThenBy()를 사용
+```
+    var filteredItems = menuItems.OrderBy(m => m.Price);
+
+    // 메뉴를 가격의 오름차순으로 정렬 후 filteredItems에 반환
+```
+```
+    var filteredItems2 = menuItems.OrderBy( m => m.Price)
+                                  .ThenBy( m => m.Name);
+
+    // 메뉴를 가격의오름차순으로 정렬한 뒤, 다시 이름의 오름차순으로 정렬 후 filteredItems2에 반환
+```
+
+### OrderByDescending()과 ThenByDescending()
+* 두 함수 모두 내림차순으로 정렬 후 반환함
+* 별도의 정렬 기준을 추가하고 싶다면 ThenByDescending()을 사용
+```
+    var filteredItems = menuItems.OrderByDescending(m => m.Price);
+
+    // 메뉴를 가격의 내림차순으로 정렬 후 filteredItems 반환
+```
+```
+    var filteredItems = menuItems.OrderByDescending( m => m.Price)
+                                 .ThenByDescending( m => m.Name);
+
+    // 메뉴를 가격의 내림차순으로 정렬한 뒤, 다시 이름의 내림찬수능로 정렬 후 filteredItems에 반환
+```
+
+### 섞어 사용해도 괜찮음
+```
+    var filteredItems = menuItems.OrderByDescending( m => m.Price)
+                                 .ThenBy(m => m.Name);
+    // 메뉴를 가격의 내림차순으로 정렬한 뒤, 다시 이름의 오름차순으로 정렬 후 filteredItems 에 반환
+```
+```
+    var filteredItems = menuItems.Order(m => m.Price)
+                                 .ThenByDescending(m => m.Name);
+    // 메뉴를 가격의 오름차순으로 정렬한 뒤, 다시 이름의 내림차순으로 정렬 후 filteredItems에 반환
+```
+
+### Where()와 함께 쓸 수 있음
+* OrderByXX()는 Where() 혹은 다른 함수들과 합칠(chaining) 수 있음
+```
+    var filteredItems = menuItems.Where( m => m.Price < 15)
+                                 .OrderBy(item => item.Price);
+                                 .ThenByDescending(m => m.Name);
+```
+
+### First()
+* 데이터 셋(data set) 에서 가장 처음 요소를 반환
+```
+    var item1 = menuItems.OrderBy(m => m.Price).First();
+    var item2 = menuItems.OrderByDescending(m => m.Price).First();
+```
+* 그러나 비어 있으면 예외 발생!
+```
+    var item = menuItems.Where(m => m.Price < 0)
+                        .OrderBy(m => m.Price)
+                        .First();
+```
+
+### FirstOrDefault()
+```
+ var item = menuItems.Where(m => m.Price < 0)
+                        .OrderBy(m => m.Price)
+                        .FirstOrDefault();
+```
+* 조건에 맞는 첫 요소를 못 찾을 경우 기본값(default)을 반환
+* 클래스형의 기본값은? null
+
+
+<br>
+
+LINQ 4
+-----
+
+### All()
+* 모든 데이터가 특정 조건을 만족하는지 평가
+    * 그럴 경우 true, 아닐경우 false 반환
+    ```
+        bool result = menuItems.All(m => m.Price >= 0); // true
+
+        // 모두 메뉴의 가격이 $0 이상인가?
+    ```
+    ```
+        bool result = menuItems.All(m => m.Price >= 15); //false
+        
+        // 모든 메뉴의 가격이 $15 이상인가?
+    ```
+
+### Any()
+* 데이터 셋에 있는 데이터 중 하나라도 특정 조건을 만족하는지 평가
+    * 그럴 경우 true, 아닐 경우 false 반환
+    ````
+        bool result = menuItems.Any(m => m.Price >= 15); // true
+
+        // 메뉴 중 하나라도 $15 이상인 메뉴가 있는가?
+    ````
+    ````
+        bool result2 = menuItems.Any(m => m.Price < 10); // false
+
+        // 메뉴 중 하나라도 $10미만인 메뉴가 있는가?
+    ````
+
+### ToList() / ToArray() / ToDictionary()
+* 현재 쿼리 결과를 리스트, 배열, 딕셔너리로 변환해줌
+```
+    var menuItmes = new List<MenuItems>(); // 10개의 메뉴가 들어있음
+
+    List<MenuItem> item1 = menuItems.Where(m => m.Price < 15).ToList();
+
+    MenuItem[] items2 = menuItems.Where(m => m.Price < 15>).ToArray();
+
+    Dictionary<int, MenuItem> item3 = menuItems.Where(m => m.Price < 15)
+                                               .ToDictionary(m => m.ID);
+```
+
+#### Select();
+* 큰 개체 하나에서 몇개 멤버만 새로운 개체를 만드는 법
+```
+     var menuItmes = new List<MenuItems>(); // 10개의 메뉴가 들어있음
+
+     var items1 = menuItems.Select(m => new {m.Name, m.Price});
+
+     var item = items1.FirstOrDefault();
+     if (item != null)
+     {
+         Console.WriteLine($"{item.Name}: ${item.Price}");
+     }
+```
+
+### Select() 보다 더 나은 방법
+```
+    public class DisplayMenuItem
+    {
+        public string Name {get; set;}
+        public float Price {get; set;}
+    }
+
+    //메인 함수
+    var menuItems = new List<MenuItem>(); // 10개의 메뉴가 들어있음
+    
+    var items = menuItems.Select(m => new DispalyMenuItem {Name = m.Name, Price = m.Price});
+
+    DisplayMenuItme dispalyItem = items.FirstOrDefault();
+    if (displayItem != null)
+    {
+        Console.WriteLine($"{displayItme.Name}: ${dispalyItem.Price}");
+    }
+```
+* new DispalyMenuItem {Name = m.Name, Price = m.Price} 이런식으로 쓸수 있음
+
+### LINQ 사용시 주의점1 : 내부를 이해할 것
+* LINQ는 매우 유용한 함수들을 제공
+* 그러나 내부를 제대로 이해하지 못하고 쓴다면 불필요하게 코드가 느려질수 있음
+
+### LINQ 사용시 주의점2 : 가독성
+* 디버깅도 쉽지 않고 읽기도 어렵다 
+* 되도록이면 짧게 짜야 가독성이 높아진다
+* 긴 LINQ는 쪼개서 써라
