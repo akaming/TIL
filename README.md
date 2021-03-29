@@ -54,4 +54,5 @@ Today I Learned
 
 ### React Native로 날씨앱 만들기
 * Nomad Coder 에서 학습한 내용 입니다.
-    * [INTRODUCTION](https://github.com/akaming/TIL/blob/master/ReactNative_Weather/INTRODUCTION.md)
+    * [INTRODUCTION](https://github.com/akaming/TIL/blob/master/ReactNative_Weather/%230%20INTRODUCTION.md)
+    * [LOGIC](https://github.com/akaming/TIL/blob/master/ReactNative_Weather/%231%20LOGIC.md)
