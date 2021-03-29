@@ -110,32 +110,34 @@ LOGIC
 * console.log(location); 을 썼기때문에 시뮬레이터 localhost 또는 터미널에서 보면은 지역정보에 대한 데이터가 나옴
 
 ### step05 latitude(위도), longitude(경도) 가져오기
-    ```
-        import React from 'react';
-        import { Alert } from 'react-native'
-        import Loading from "./Loading";
-        import * as Location from 'expo-location'
 
-        export default class extends React.Component {
-           
-            geoLocation = async() => {
-                try{
-                    await Location.requestPermissionsAsync();
-                    const {coords : {latitude, longitude}}  = await Location.getCurrentPositionAsync();
-                    console.log(location); //console에서 확인하기 위해서 썼음
-                } catch(error){
-                    Alert.alert("Can't find you.", "So sad");
-                }        
-            }
+```
+    import React from 'react';
+    import { Alert } from 'react-native'
+    import Loading from "./Loading";
+    import * as Location from 'expo-location'
 
-            componentDidMount(){
-                this.geoLocation();
-            }
-            render(){
-                return <Loading/>;
-            }
+    export default class extends React.Component {
+        
+        geoLocation = async() => {
+            try{
+                await Location.requestPermissionsAsync();
+                const {coords : {latitude, longitude}}  = await Location.getCurrentPositionAsync();
+                console.log(location); //console에서 확인하기 위해서 썼음
+            } catch(error){
+                Alert.alert("Can't find you.", "So sad");
+            }        
         }
-    ```
+
+        componentDidMount(){
+            this.geoLocation();
+        }
+        render(){
+            return <Loading/>;
+        }
+    }
+```
+
 * 로딩 상태를 확인하는 state 변수를 하나 만들자
     * render를 할 때 isLoading이 true일 때만 제대로 반환하고, 아니면 null을 반환
     ```
