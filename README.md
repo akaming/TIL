@@ -30,6 +30,7 @@ Today I Learned
     * [개체지향 프로그래밍(Object Oriented Programming) 기초](https://github.com/akaming/TIL/blob/master/c%23/chapter17.md)
     * [값형 vs 참조형, 구조체, Nullable](https://github.com/akaming/TIL/blob/master/c%23/chapter18.md)
     * [LINQ](https://github.com/akaming/TIL/blob/master/c%23/chapter19.md)
+    * [파일 입출력, 예외 처리, 파일 스트림](https://github.com/akaming/TIL/blob/master/c%23/chapter20.md)
 <br>
 
 ### 바닐라 JS로 크롬 앱 만들기
