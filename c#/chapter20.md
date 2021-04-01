@@ -990,3 +990,301 @@
     ```
     * File.Open()은 반환값으로 FileStream 개체를 줌
         * 이 개체는 Stream 개체라 볼 수 있음(지금은 자세히 몰라도 됨)
+
+### 복습퀴즈
+```
+    public static void Main(string[] args)
+    {
+        string path = @"C:\Example\sample.txt";
+
+        readByte(path);
+    }
+
+    private static void readByte(string path)
+    {
+        using (FileStream fs = File.Open(path, FileMode.Open))
+        {
+            if (!fs.CanRead) // 파일을 읽는게 가능한지 확인
+            {
+                return;
+            }
+
+            for (int i = 0; i < fs.Length; ++i)
+            {
+                int value = fs.ReadByte();
+                Console.WriteLine($"{value}");
+            }
+        }
+    }
+
+```
+
+### 코드보기 : 파일 읽기 및 쓰기
+```
+    using System;
+    using System.IO;
+
+    namespace ReadAndWriteFile
+    {
+        public class Program
+        {
+            private static readonly string CURRENT_DIRECTORY = Directory.GetCurrentDirectory();
+            private static readonly string OUTPUT_FOLDER_PATH = Path.Combine(CURRENT_DIRECTORY, "output");
+            private static readonly string INPUT_FILE_FULL_PATH = Path.Combine(CURRENT_DIRECTORY, "input", "inputtext.txt");
+            private static readonly string OUTPUT_FILE1_FULL_PATH = Path.Combine(CURRENT_DIRECTORY, "output", "outputtext.txt");
+            private static readonly string OUTPUT_FILE2_FULL_PATH = Path.Combine(CURRENT_DIRECTORY, "output", "outputtext2.txt");
+
+            public static void Main(string[] args)
+            {
+                setup();
+
+                Console.WriteLine($"Input file is in: {INPUT_FILE_FULL_PATH}");
+
+                string allText = File.ReadAllText(INPUT_FILE_FULL_PATH);
+
+                Console.WriteLine("----------------------------------");
+                Console.WriteLine(allText);
+                Console.WriteLine("----------------------------------");
+
+                string[] allLines = File.ReadAllLines(INPUT_FILE_FULL_PATH);
+
+                Console.WriteLine("----------------------------------");
+                foreach (string line in allLines)
+                {
+                    Console.WriteLine(line);
+                }
+                Console.WriteLine("----------------------------------");
+
+                Console.WriteLine($"Output file 1 is in: {OUTPUT_FILE1_FULL_PATH}");
+
+                File.WriteAllText(OUTPUT_FILE1_FULL_PATH, allText);
+
+                File.WriteAllLines(OUTPUT_FILE1_FULL_PATH, allLines);
+
+                File.AppendAllLines(OUTPUT_FILE1_FULL_PATH, allLines);
+
+                byte[] bytes = new byte[12] { 72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100, 33 };
+
+                File.WriteAllBytes(OUTPUT_FILE2_FULL_PATH, bytes);
+
+                Console.WriteLine($"Output file 2 is in: {OUTPUT_FILE2_FULL_PATH}");
+            }
+
+            private static void setup()
+            {
+                if(File.Exists(OUTPUT_FILE1_FULL_PATH))
+                {
+                    File.Delete(OUTPUT_FILE1_FULL_PATH);
+                }
+
+                if (File.Exists(OUTPUT_FILE2_FULL_PATH))
+                {
+                    File.Delete(OUTPUT_FILE2_FULL_PATH);
+                }
+
+                if (!Directory.Exists(OUTPUT_FOLDER_PATH))
+                {
+                    Directory.CreateDirectory(OUTPUT_FOLDER_PATH);
+                }
+            }
+        }
+    }
+```
+
+### 코드보기 : try, catch, finally
+```
+    using System;
+    namespace TryCatchFinally
+    {
+        class Program
+        {
+            public static void Main(string[] args)
+            {
+                Random random = new Random();
+                int dividend = random.Next();
+                Console.WriteLine($"Divide {dividend} by a divisor.");
+
+                try
+                {
+                    Console.Write($"Input a divisor? ");
+                    string integerString = Console.ReadLine();
+                    int divisor = int.Parse(integerString);
+
+                    if (divisor == 10)
+                    {
+                        throw new IntegerIs10Exception("The input integer is 10!!");
+                    }
+
+                    double result = dividend / (double)divisor;
+
+                    Console.WriteLine($"Result: {result}");
+                }
+                catch (ArgumentNullException e)
+                {
+                    Console.WriteLine("Argument is null");
+                    Console.WriteLine(e);
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine("Integer format is wrong");
+                    Console.WriteLine(e);
+                }
+                catch (OverflowException e)
+                {
+                    Console.WriteLine("The number is too huge to be an integer");
+                    Console.WriteLine(e);
+                }
+                catch (IntegerIs10Exception e)
+                {
+                    Console.WriteLine("The divisor is 10. Oh noez!!");
+                    Console.WriteLine(e);
+                }
+                catch (DivideByZeroException e)
+                {
+                    Console.WriteLine("The dividend is being divided by 0");
+                    Console.WriteLine(e);
+                }
+                finally
+                {
+                    Console.WriteLine("Finally clause always runs regardless of whether or not there was an exception");
+                }
+            }
+        }
+    }
+```
+
+### 코드보기: FileStream을 이용한 읽기 및 쓰기
+```
+    using System;
+    using System.IO;
+
+    namespace ReadAndWriteFileUsingFileStream
+    {
+        public class Program
+        {
+            private static readonly string CURRENT_DIRECTORY = Directory.GetCurrentDirectory();
+            private static readonly string OUTPUT_FOLDER_PATH = Path.Combine(CURRENT_DIRECTORY, "output");
+            private static readonly string INPUT_FILE_FULL_PATH = Path.Combine(CURRENT_DIRECTORY, "input", "inputtext.txt");
+            private static readonly string OUTPUT_FILE_FULL_PATH = Path.Combine(CURRENT_DIRECTORY, "output", "outputtext.txt");
+
+            public static void Main(string[] args)
+            {
+                setup();
+
+                FileStream fsRead = File.Open(INPUT_FILE_FULL_PATH, FileMode.Open, FileAccess.Read);
+
+                //fsRead.Write(new byte[] { 1, 2, 3 }, 0, 3);
+
+                Console.WriteLine($"CanRead: {fsRead.CanRead}");
+                Console.WriteLine($"CanWrite: {fsRead.CanWrite}");
+                Console.WriteLine($"CanSeek: {fsRead.CanSeek}");
+
+                byte[] bytes = new byte[fsRead.Length];
+                fsRead.Read(bytes, 0, bytes.Length);
+
+                fsRead.Close();
+
+                Console.WriteLine(string.Join(", ", bytes));
+
+                FileStream fsWrite = File.Open(OUTPUT_FILE_FULL_PATH, FileMode.Create, FileAccess.Write);
+
+                Console.WriteLine($"CanRead: {fsWrite.CanRead}");
+                Console.WriteLine($"CanWrite: {fsWrite.CanWrite}");
+                Console.WriteLine($"CanSeek: {fsWrite.CanSeek}");
+
+                fsWrite.Write(bytes, 0, bytes.Length);
+
+                fsWrite.Close();
+            }
+
+            private static void setup()
+            {
+                if (File.Exists(OUTPUT_FILE_FULL_PATH))
+                {
+                    File.Delete(OUTPUT_FILE_FULL_PATH);
+                }
+
+                if (!Directory.Exists(OUTPUT_FOLDER_PATH))
+                {
+                    Directory.CreateDirectory(OUTPUT_FOLDER_PATH);
+                }
+            }
+        }
+    }
+```
+
+### 코드보기: using 문
+```
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+
+    namespace UsingStatement
+    {
+        public class Program
+        {
+            private static readonly string CURRENT_DIRECTORY = Directory.GetCurrentDirectory();
+            private static readonly string OUTPUT_FOLDER_PATH = Path.Combine(CURRENT_DIRECTORY, "output");
+            private static readonly string INPUT_FILE_FULL_PATH = Path.Combine(CURRENT_DIRECTORY, "input", "inputtext.txt");
+            private static readonly string OUTPUT_FILE_FULL_PATH = Path.Combine(CURRENT_DIRECTORY, "output", "outputtext.txt");
+
+            public static void Main(string[] args)
+            {
+                setup();
+
+                string allText = string.Empty;
+                
+                using (StreamReader reader1 = new StreamReader(File.Open(INPUT_FILE_FULL_PATH, FileMode.Open, FileAccess.Read)))
+                {
+                    Console.WriteLine("----------------------------------");
+                    allText = reader1.ReadToEnd();
+                    Console.WriteLine(allText);
+                    Console.WriteLine("----------------------------------");
+                }
+
+                List<string> allLines = new List<string>();
+                using (StreamReader reader2 = new StreamReader(File.Open(INPUT_FILE_FULL_PATH, FileMode.Open, FileAccess.Read)))
+                {
+                    allLines = new List<string>();
+                    while (!reader2.EndOfStream)
+                    {
+                        allLines.Add(reader2.ReadLine());
+                    }
+
+                    foreach (string line in allLines)
+                    {
+                        Console.WriteLine(line);
+                    }
+
+                    Console.WriteLine("----------------------------------");
+                }
+
+                using (StreamWriter writer = new StreamWriter(File.Open(OUTPUT_FILE_FULL_PATH, FileMode.OpenOrCreate, FileAccess.Write)))
+                {
+                    writer.Write(allText);
+
+                    foreach (string line in allLines)
+                    {
+                        writer.WriteLine(line);
+                    }
+
+                    writer.BaseStream.Seek(0, SeekOrigin.Begin);
+                    writer.Write("Overwritten text");
+                }
+            }
+
+            private static void setup()
+            {
+                if (File.Exists(OUTPUT_FILE_FULL_PATH))
+                {
+                    File.Delete(OUTPUT_FILE_FULL_PATH);
+                }
+
+                if (!Directory.Exists(OUTPUT_FOLDER_PATH))
+                {
+                    Directory.CreateDirectory(OUTPUT_FOLDER_PATH);
+                }
+            }
+        }
+    }
+```
