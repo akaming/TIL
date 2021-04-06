@@ -31,7 +31,7 @@ Today I Learned
     * [값형 vs 참조형, 구조체, Nullable](https://github.com/akaming/TIL/blob/master/c%23/chapter18.md)
     * [LINQ](https://github.com/akaming/TIL/blob/master/c%23/chapter19.md)
     * [파일 입출력, 예외 처리, 파일 스트림](https://github.com/akaming/TIL/blob/master/c%23/chapter20.md)
-    * (파일과 디렉터리, 나만의 라이브러리, 직렬화)[https://github.com/akaming/TIL/blob/master/c%23/chapter21.md]
+    * [파일과 디렉터리, 나만의 라이브러리, 직렬화](https://github.com/akaming/TIL/blob/master/c%23/chapter21.md)
 <br>
 
 ### 바닐라 JS로 크롬 앱 만들기
