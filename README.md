@@ -31,6 +31,7 @@ Today I Learned
     * [값형 vs 참조형, 구조체, Nullable](https://github.com/akaming/TIL/blob/master/c%23/chapter18.md)
     * [LINQ](https://github.com/akaming/TIL/blob/master/c%23/chapter19.md)
     * [파일 입출력, 예외 처리, 파일 스트림](https://github.com/akaming/TIL/blob/master/c%23/chapter20.md)
+    * (파일과 디렉터리, 나만의 라이브러리, 직렬화)[https://github.com/akaming/TIL/blob/master/c%23/chapter21.md]
 <br>
 
 ### 바닐라 JS로 크롬 앱 만들기
@@ -57,3 +58,7 @@ Today I Learned
 * Nomad Coder 에서 학습한 내용 입니다.
     * [INTRODUCTION](https://github.com/akaming/TIL/blob/master/ReactNative_Weather/%230%20INTRODUCTION.md)
     * [LOGIC](https://github.com/akaming/TIL/blob/master/ReactNative_Weather/%231%20LOGIC.md)
+
+### React Native 무비앱 만들기
+* Nomad Coder 에서 학습한 내용 입니다.
+    * [무비앱](https://github.com/akaming/TIL/tree/master/ReactNative_noovies)
