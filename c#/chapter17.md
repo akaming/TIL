@@ -628,7 +628,7 @@ Program.cs
       }  
     }
     ```
-* seeter 함수가 아님
+* setter 함수가 아님
     ```
         public void FillUp(float gas)
         {
