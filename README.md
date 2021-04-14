@@ -26,6 +26,7 @@ Today I Learned
     * [열거형(enum) 및 어서트(assert)](https://github.com/akaming/TIL/blob/master/c%23/chapter14.md)
     * [재귀 함수, 그리고 주사위 굴리기(랜덤 수 생성)](https://github.com/akaming/TIL/blob/master/c%23/chapter22.md)
     * [배열의 배열, 문자열 분할](https://github.com/akaming/TIL/blob/master/c%23/chapter15.md)
+    * [파트2 시작, 다시 만난 함수](https://github.com/akaming/TIL/blob/master/c%23/chapter23.md))
     * [문자열 빌더, decimal형, 컬렉션](https://github.com/akaming/TIL/blob/master/c%23/chapter16.md)
     * [개체지향 프로그래밍(Object Oriented Programming) 기초](https://github.com/akaming/TIL/blob/master/c%23/chapter17.md)
     * [값형 vs 참조형, 구조체, Nullable](https://github.com/akaming/TIL/blob/master/c%23/chapter18.md)
