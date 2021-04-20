@@ -18,7 +18,7 @@
 
 <br>
 
-### step 02 app.js
+### step 02 AppLoading
 
 1. app.js 에서 불필요한 코드를 을 지우고 AppLoading 이라는 컴포넌트를 쓸거다.
 
@@ -97,7 +97,9 @@
 
 - onError 는 error argument랑 같이 오는 function 이다. 그래서 onError={console.error}은 (e) => console.error 랑 같은거다.
 
-6. 이미지 로드 하기
+### step 03 이미지 로드하기
+
+1. 이미지 로드 하기
    - cachImages 라고 불리는 function 만들기
    - asset은 external module 이다. 이건 기본적으로 asset에 접근 해준다.
    - 터미널에 expo install expo-asset 친다.
@@ -134,3 +136,25 @@
 ```
 
 - 이미지는 [unsplash](https://unsplash.com/)에 있는 이미지 사용
+- image.prefetch는 promise를 준다.
+- Assets.fromModule은 promise를 준다.
+- images는 proise들의 array다.
+
+### step 04 cacheFonts
+
+1. 벡터 아이콘을 설치해야 한다. [expo icons](https://docs.expo.io/guides/icons/#expovector-icons)<br>
+   터미널에 명령어 입력
+
+```
+    expo install @expo/vector-icons
+```
+
+- expo ad
+  - 그냥 npm install 같은 거다.
+  - expo ad는 expo랑 호환이 되는 package가 있는지 시도해보는 layer가 있다.
+- npm 과 yarn 비교
+  - node + npm이 기본 이었는데, 몇 가지 npm의 문제점을 해결하기 위해 yarn 나옴
+  - 기존 npm은 배포가 쉽고, 종속성을 쉽게 해결할 수 있지만 패키지가 중복으로 설치될 수 있고, 파일이 많은 경우에 문제가 될 수 있다. 페이스북에서는 이런 문제점들을 해결하기 위해서 yarn을 발표
+  - yarn 은 npm3보다 패키지 설치 속도가 빠름
+  - json 포캣을 사용하지 않음
+  - offline 모드가 가능
