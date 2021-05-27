@@ -53,19 +53,19 @@
 ### ReactJS로 영화 웹 서비스 만들기
 
 - Nomad Coder 에서 학습한 내용 입니다.
-  - [JSX & PROPS](https://github.com/akaming/TIL/blob/master/ReactJsMovie/JSX-PROPS.md)
+  - [JSX & PROPS](https://github.com/akaming/TIL/blob/master/ReactJsMovie/JSX_PROPS.md)
   - [STATE]
 
 ### React Native로 날씨앱 만들기
 
 - Nomad Coder 에서 학습한 내용 입니다.
-  - [INTRODUCTION](https://github.com/akaming/TIL/blob/master/ReactNative-Weather/%230%20INTRODUCTION.md)
-  - [LOGIC](https://github.com/akaming/TIL/blob/master/ReactNative-Weather/%231%20LOGIC.md)
+  - [INTRODUCTION](https://github.com/akaming/TIL/blob/master/ReactNative_Weather/%230%20INTRODUCTION.md)
+  - [LOGIC](https://github.com/akaming/TIL/blob/master/ReactNative_Weather/%231%20LOGIC.md)
 
 ### React Native 무비앱 만들기
 
 - Nomad Coder 에서 학습한 내용 입니다.
-  - [무비앱](https://github.com/akaming/TIL/tree/master/ReactNative-noovies)
+  - [무비앱](https://github.com/akaming/TIL/tree/master/ReactNative_noovies)
 
 ### AdonisJS
 
