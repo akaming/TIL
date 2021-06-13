@@ -1,0 +1,4 @@
+- localStorage는 프론트에서만 쓰는거다 그렇기 때문에 서버와 같이 쓰고 싶은걸 하고 싶다면 cookie를 사용하면 된다.
+- ana-web을 만들면서 사용했던건 https://www.npmjs.com/package/universal-cookie 이다.
+- const cookies = new Cookies(req.headers.cookie);
+  - new Cookies 를 안쓰고 document.cookie를 쓴다면 클라이언트에만 정보를 저장한다.
