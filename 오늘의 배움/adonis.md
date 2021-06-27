@@ -121,7 +121,7 @@ Controllers는 route에 할당되는 함수들을 용도별로 나눌수 있게 
    ```
 2. 설치가 되면 꼭 configure 해야함
    ```
-       npm i @adonisjs/lucid
+       node ace configure @adonisjs/lucid
    ```
 3. config/database.ts 가 생긴걸 확인할 수 있음
 4. start/.env 수정
