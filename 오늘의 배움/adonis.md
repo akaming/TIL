@@ -907,3 +907,70 @@ Controllers는 route에 할당되는 함수들을 용도별로 나눌수 있게 
    ```
 
    - user_id 추기하고 author는 필요없으니 삭제
+
+### Swagger 만들기
+
+1.  npm i --save adonis5-swagger 으로 설치
+2.  그 다음 node ace invoke adonis5-swagger
+3.  그러면 config/swagger.ts 가 생기는걸 볼 수 있음
+4.  swagger.ts 에 uiUrl: 'docs' 라고 있는데 url 에 http://127.0.0.1:3333/docs/ 이렇게 치면은 swagger가 나옴
+5.  swagger.ts 에 options title, description 수정
+
+    ```
+    options: {
+        definition: {
+        openapi: "3.0.0",
+            info: {
+            title: "커뮤니티 API",
+            version: "1.0.0",
+            description: "커뮤니티 API 입니다.",
+        },
+    },
+
+    ```
+
+6.  필요한 Controller.ts 에 적기
+
+    ```
+        //예시 : AuthControlle.ts
+        /**
+        * @swagger
+        * /sign-in:
+        *   post:
+        *     tags:
+        *       - Auth
+        *     summary: 로그인
+        *     requestBody:
+        *        content:
+        *          application/x-www-form-urlencoded:
+        *             schema:
+        *              type: object
+        *              properties:
+        *                 user_id:
+        *                  type: string
+        *                  description: id
+        *                  example: user1
+        *                 password:
+        *                  type: string
+        *                  description: password
+        *                  example: password
+        *              required:
+        *                - user_id
+        *                - password
+        *     responses:
+        *       200:
+        *         description: 로그인 성공
+        *       401:
+        *         description: 로그인 권한 없음
+        *       403:
+        *         description: 등록되지 않은 회원 정보
+        */
+    ```
+
+    <br>
+
+### 프로젝트 만들기 순서
+
+1. migration 만들기
+2. model 만들기
+3. controller 만들기
